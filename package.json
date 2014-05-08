@@ -1,0 +1,32 @@
+{
+  "name": "tmux-mem",
+  "version": "0.0.0",
+  "description": "Display memory usage in your tmux status bar or in the terminal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mixu/tmux-mem.git"
+  },
+  "keywords": [
+    "tmux",
+    "memory",
+    "ram",
+    "ascii",
+    "status"
+  ],
+  "author": "Mikito Takada <mikito.takada@gmail.com> (http://mixu.net/)",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/mixu/tmux-mem/issues"
+  },
+  "homepage": "https://github.com/mixu/tmux-mem",
+  "dependencies": {
+    "bytes": "^1.0.0",
+    "chalk": "^0.4.0",
+    "textspark": "^0.1.0",
+    "yargs": "^1.2.1"
+  }
+}

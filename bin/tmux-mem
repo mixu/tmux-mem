@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+var fs = require('fs'),
+    print = require('../index.js'),
+    opts = require('yargs')
+    .options({
+        'help': { },
+        'version': { },
+        'ascii': { },
+        'format': { },
+        'width': { 'default': 10 }
+    })
+    .boolean('help')
+    .boolean('version')
+    .boolean('ascii'),
+    argv = opts.parse(process.argv);
+
+var fmt = false;
+
+if(argv['version'] || argv['v'] ) {
+  console.log(require('../package.json').version);
+  process.exit();
+}
+
+if(argv['help']) {
+  return fs.createReadStream(__dirname + '/usage.txt').pipe(process.stdout).on('close', function () { process.exit(1) });
+}
+
+if(argv['ascii']) {
+  fmt = ':currentBytes / :totalBytes [:bar] :percent';
+}
+
+if(argv['format']) {
+  fmt = argv['format'];
+}
+
+print(fmt, argv['width']);

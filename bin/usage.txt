@@ -1,0 +1,25 @@
+
+Usage: tmux-mem
+
+Options:
+
+  --ascii         Display ascii percentage bar ([======   ] instead of [▆])
+  --width <int>   The width of the ASCII bar, default: 10.
+  --format <str>  Use a custom formatting string.
+  --help          Show help.
+  --version       Show version.
+
+Custom formatting:
+
+  The default formatting string is ':currentBytes / :totalBytes [:spark] :percent'.
+
+  You can use these tokens in the custom formatting string:
+
+  - `:bar`: the ASCII progress bar
+  - `:spark`: the utf-8 spark line graphic
+  - `:current`: the number of bytes (raw)
+  - `:currentBytes`: the number of bytes (with b/kb/mb/gb/tb postfix)
+  - `:total`: the number of bytes (raw)
+  - `:totalBytes`: the number of bytes (with b/kb/mb/gb/tb postfix)
+  - `:percent`: the percentage of memory used
+
