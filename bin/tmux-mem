@@ -6,12 +6,16 @@ var fs = require('fs'),
         'help': { },
         'version': { },
         'ascii': { },
-        'format': { },
-        'width': { 'default': 10 }
+        'format': { 'default': ':currentBytes / :totalBytes [#[fg=:color]:spark#[fg=default]] :percent' },
+        'width': { 'default': 10 },
+        'tty': { 'default': process.stdout.isTTY },
+        'color': { 'default': true }
     })
     .boolean('help')
     .boolean('version')
-    .boolean('ascii'),
+    .boolean('ascii')
+    .boolean('tty')
+    .boolean('color'),
     argv = opts.parse(process.argv);
 
 var fmt = false;
@@ -26,11 +30,11 @@ if(argv['help']) {
 }
 
 if(argv['ascii']) {
-  fmt = ':currentBytes / :totalBytes [:bar] :percent';
+  argv['format'] = ':currentBytes / :totalBytes [#[fg=:color]:bar#[fg=default]] :percent';
 }
 
 if(argv['format']) {
   fmt = argv['format'];
 }
 
-print(fmt, argv['width']);
+print(fmt, argv['width'], argv['tty'], argv['color']);

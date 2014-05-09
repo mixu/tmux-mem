@@ -1,8 +1,7 @@
 var os = require('os'),
     bytes = require('bytes'),
     spark = require('textspark'),
-    chalk = require('chalk');
-
+    colors = require('tmux-colors');
 
 function bar(opts) {
   var ratio = opts.current / opts.total,
@@ -24,33 +23,32 @@ function bar(opts) {
   return result;
 }
 
-module.exports = function(fmt, width) {
-  if (!fmt) {
-    fmt = ':currentBytes / :totalBytes [:spark] :percent';
-  }
-
+module.exports = function(fmt, width, tty, enableColor) {
   var free = os.freemem(),
       total = os.totalmem(),
       used = total - free,
       percent = (used / total) * 100,
       color,
-      colors = [ 'red', 'yellow', 'green' ];
+      colorsList = [ 'red', 'yellow', 'green' ];
 
   [ 75, 50, 25 ].some(function(threshold, i) {
-    color = colors[i];
+    color = colorsList[i];
     return percent > threshold;
-  })
+  });
 
   console.log(
-      bar({
+    colors(bar({
       format: fmt,
       current: used,
       currentBytes: bytes(used),
       total: total,
       totalBytes: bytes(total),
-      spark: chalk[color]( spark([0, percent, 100])[1]),
+      spark: spark([0, percent, 100])[1],
+      color: color,
       percent: percent.toFixed(0) + '%',
       width: width || 10
-    }));
+    }), { tty: tty || process.stdout.isTTY,
+          color: enableColor })
+  );
 
 };
