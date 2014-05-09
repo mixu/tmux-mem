@@ -27,9 +27,9 @@
   },
   "homepage": "https://github.com/mixu/tmux-mem",
   "dependencies": {
-    "bytes": "^1.0.0",
-    "textspark": "^0.1.0",
-    "tmux-colors": "0.0.0",
-    "yargs": "^1.2.1"
+    "bytes": "1.0.x",
+    "textspark": "0.1.x",
+    "tmux-colors": "0.0.x",
+    "yargs": "1.2.x"
   }
 }
