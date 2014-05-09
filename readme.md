@@ -18,6 +18,7 @@ Install Node, then use npm:
       --width <int>   The width of the ASCII bar, default: 10.
       --format <str>  Use a custom formatting string.
       --no-color      Disable colors.
+      --no-tty        Show the raw tmux string.
       --help          Show help.
       --version       Show version.
 

@@ -3,6 +3,10 @@ var os = require('os'),
     spark = require('textspark'),
     colors = require('tmux-colors');
 
+function escapeRegExp(string) {
+    return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+}
+
 function bar(opts) {
   var ratio = opts.current / opts.total,
       width = opts.width || 10,
@@ -17,7 +21,7 @@ function bar(opts) {
       return b.length - a.length;
     }).forEach(function(key) {
       if (key != 'bar' && key != 'format') {
-        result = result.replace(':' + key, opts[key]);
+        result = result.replace(new RegExp(escapeRegExp(':' + key), 'g'), opts[key]);
       }
     });
   return result;
